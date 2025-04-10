@@ -1,0 +1,127 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+
+    --primary: 210 40% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 47% 11%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 222 47% 11%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 47% 11%;
+    --input: 222 47% 11%;
+    --ring: 224 71% 4%;
+    
+    --radius: 0.5rem;
+
+    /* Sidebar specific colors */
+    --sidebar: 223 47% 11%;
+    --sidebar-foreground: 213 31% 91%;
+    --sidebar-border: 222 47% 20%;
+    --sidebar-accent: 210 40% 30%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-ring: 224 71% 4%;
+    --terminal-dark: 220 40% 13%;
+    --terminal-light: 220 40% 30%;
+    --terminal-success: 142 70% 45%;
+    --terminal-warning: 40 90% 60%;
+    --terminal-error: 0 90% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+  }
+}
+
+.terminal-cursor::after {
+  content: "_";
+  @apply animate-terminal-blink;
+}
+
+.typed-text {
+  @apply overflow-hidden whitespace-nowrap border-r-4 border-terminal-success pr-1;
+  animation: typing 3s steps(40, end), terminal-blink 0.75s step-end infinite;
+}
+
+.tech-pill {
+  @apply bg-secondary px-3 py-1 rounded-full text-xs font-mono text-primary transition-all hover:bg-primary hover:text-secondary cursor-default;
+}
+
+.nav-link {
+  @apply relative text-muted-foreground hover:text-foreground transition-colors duration-200 font-mono;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+.active-link::after {
+  @apply w-full;
+}
+
+.pipeline-node {
+  @apply cursor-pointer rounded-md transition-transform duration-300 ease-in-out transform hover:scale-110;
+}
+
+@keyframes avatar-glow {
+  0% {
+    box-shadow: 0 0 5px 2px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px 5px rgba(59, 130, 246, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 5px 2px rgba(59, 130, 246, 0.5);
+  }
+}
+
+.avatar-glow {
+  animation: avatar-glow 3s infinite;
+}
+
+@keyframes terminal-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
